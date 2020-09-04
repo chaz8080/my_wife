@@ -1,0 +1,24 @@
+name: Re-commit to my_wife
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  pledge-thy-love:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Go get my_wife
+      uses: actions/checkout@master
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+    - name: Profess my commitment
+      run: |
+        echo $(date '+%Y-%m-%d') I re-committed to my_wife >> history.txt
+        git config --local user.email "charles.scholle1@gmail.com"
+        git config --local user.name "CharlesScholle"
+        git commit -am "Re-commit to my_wife"
+    - name: Store my renewed commitment in the blockchain
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
